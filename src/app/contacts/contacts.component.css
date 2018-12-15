@@ -1,0 +1,13 @@
+.contacts {
+  display: flex;
+  border-bottom: 1px;
+}
+
+.contacts h3 {
+  font-size: 14px;
+}
+
+/* Dar estilos a todos los componentes hijos :host */
+:host input {
+  border-bottom: 3px solid black;
+}

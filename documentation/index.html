@@ -1,0 +1,202 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>chat documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="./images/favicon.ico">
+	      <link rel="stylesheet" href="./styles/style.css">
+    </head>
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top visible-xs">
+            <a href="./" class="navbar-brand">chat documentation</a>
+            <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="hidden-xs menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content getting-started">
+                   <div class="content-data">
+
+<h1 id="chat">Chat</h1>
+<p>This project was generated with <a href="https://github.com/angular/angular-cli">Angular CLI</a> version 7.0.6.</p>
+<h2 id="development-server">Development server</h2>
+<p>Run <code>ng serve</code> for a dev server. Navigate to <code>http://localhost:4200/</code>. The app will automatically reload if you change any of the source files.</p>
+<h2 id="code-scaffolding">Code scaffolding</h2>
+<p>Run <code>ng generate component component-name</code> to generate a new component. You can also use <code>ng generate directive|pipe|service|class|guard|interface|enum|module</code>.</p>
+<h2 id="build">Build</h2>
+<p>Run <code>ng build</code> to build the project. The build artifacts will be stored in the <code>dist/</code> directory. Use the <code>--prod</code> flag for a production build.</p>
+<h2 id="tutorial-spanish">Tutorial - Spanish</h2>
+<p>Este es el ejemplo / proyecto a realizar por los alumnos del curso de Angular de Fictizia. Se irán añadiendo instrucciones aquí paso a paso</p>
+<h3 id="generar-el-proyecto-">Generar el proyecto.</h3>
+<p>  Podemos generar el proyecto utilizando el comando </p>
+<div><pre class="line-numbers"><code class="language-none">  ng new chat
+  `</code></pre></div><p>  Esto generará una carpeta chat en la que se crearán los archivos necesarios para comenzar un proyecto angular. Podemos lanzar la aplicación utilizando el comando siguiente y accediendo al puerto localhost:4200</p>
+<div><pre class="line-numbers"><code class="language-none">  ng serve</code></pre></div><h3 id="generar-un-componente-avatar-">Generar un componente avatar.</h3>
+<p>  En este componente, visualizaremos la información de los contactos que vayamos utilizando. Podemos generar nuevos componentes utilizando el siguiente comando.</p>
+<div><pre class="line-numbers"><code class="language-none">  ng generate component avatar
+  `</code></pre></div><p>  Por defecto, nos generará un componente con el selector app-avatar. Si añadimos el html siguiente, visualizaremos en nuestra aplicación el mensaje app avatar works!</p>
+<div><pre class="line-numbers"><code class="language-none">  &lt;app-avatar&gt;&lt;/app-avatar&gt;
+  `</code></pre></div><p>  Una vez tenemos el componente creado, podemos añadirle propiedades mediante Inputs. Consulta las slides si tienes dudas, pero acabaremos con algo asi en nuestro avatar.component.ts</p>
+<div><pre class="line-numbers"><code class="language-none">  class AvatarComponent {
+    &#64;Input() imgSrc: string;
+  }</code></pre></div><p> algo así en nuestro avatar.component.html</p>
+<div><pre class="line-numbers"><code class="language-none">  &lt;img [src]=&quot;imgSrc&quot;&gt;</code></pre></div><p> y así en nuestro app.component.html</p>
+<div><pre class="line-numbers"><code class="language-none">  &lt;app-avatar src=&quot;&lt;una url que os guste.jpg&quot;&gt;&lt;/app-avatar&gt;</code></pre></div><p>Con esto, habremos creado nuestro primer componente con propiedades de entrada (Inputs)</p>
+<h3 id="generar-un-componente-de-introducci-n-de-texto-">Generar un componente de introducción de texto.</h3>
+<p>  Ahora que ya sabemos crear un componente, y utilizar Inputs para pasarles propiedades, podemos crear un componente para enviar mensajes en nuestro chat. Este componente, va a utilizar NgModel para recoger la información que introduzcamos en un input. NgModel vincula el valor de un input con una propiedad. Para utilizarlo debemos seguir 3 pasos.</p>
+<p>  Primero, vamos al app.module.ts para añadir el módulo de formularios de Angular. Angular no importa todos los módulos por defecto para dejarnos escoger que queremos y que no queremos usar. En este caso, vamos a añadir el modulo FormsModule al app.module.ts, añadiendo el import, e incluyendolo dentro del array de imports</p>
+<div><pre class="line-numbers"><code class="language-none">import { FormsModule } from &#39;&#64;angular/forms&#39;;
+
+&#64;NgModule({
+  ...
+  imports: [
+    BrowserModule,
+    FormsModule
+  ],
+  ...
+})
+export class AppModule { }</code></pre></div><p>Ahora ya podemos utilizar NgModel en nuestro componente. Vamos a empezar generando el componente</p>
+<div><pre class="line-numbers"><code class="language-none">  ng g c text</code></pre></div><p>Podemos incluirlo en el html del app.component.html utilizando el selector</p>
+<div><pre class="line-numbers"><code class="language-none">&lt;app-text&gt;&lt;/app-text&gt;</code></pre></div><p>Ahora vamos a crear una variable &quot;message&quot; en nuestro text.component.ts para almacenar el valor introducido en el input por el usuario</p>
+<div><pre class="line-numbers"><code class="language-none">export class TextComponent implements OnInit {
+  message: string = &#39;&#39;;
+
+  constructor() {}
+  ngOnInit() {}
+}</code></pre></div><p>Y vamos a añadir un input en nuestro text.component.html para que el usuario pueda introducir el mensaje que desea</p>
+<div><pre class="line-numbers"><code class="language-none">&lt;input [(ngModel)]=&quot;message&quot; type=&quot;text&quot; placeholder=&quot;Message&quot;&gt;
+{{ message }}</code></pre></div><p>Si introducimos un valor en el input, veremos que automaticamente se muestra debajo, gracias al NgModel, hemos creado una relación entre el input y la variable que hemos creado previamente. Cada vez que modifiquemos esta variable se verá reflejado en la vista.</p>
+<p>Vamos a añadir un botón para confirmar el mensaje</p>
+<div><pre class="line-numbers"><code class="language-none">&lt;input [(ngModel)]=&quot;message&quot; type=&quot;text&quot; placeholder=&quot;Message&quot;&gt;
+&lt;button (click)=&quot;sendInfo()&quot;&gt; Enviar &lt;/button&gt;</code></pre></div><p>Mediante la notación (click), podemos escuchar el evento click en el botón y llamar a una función sendInfo que hayamos definido en nuestro componente. Vamos a mostrar el mensaje por un alert</p>
+<div><pre class="line-numbers"><code class="language-none">export class TextComponent implements OnInit {
+  message: string = &#39;&#39;;
+
+  constructor () {}
+  ngOnInit () {}
+
+  sendInfo () {
+    alert(this.message);
+  }
+}</code></pre></div><h3 id="comunicando-entre-componentes">Comunicando entre componentes</h3>
+<p>  Hemos creado un componente de introducción de texto, que nos servirá para introducir un nombre de usuario, un mensaje, o un comentario, dependiendo del contexto en el que lo utilizemos. Nuestro objetivo ahora es mostrar ese mensaje en el componente padre app.component.html. Para ello tendremos que usar los Output (Más info en las slides). Los outputs nos ayudan a definir &quot;eventos propios del componente&quot; que podremos escuchar como escuchamos los click, change y demás.</p>
+<div><pre class="line-numbers"><code class="language-none">import { Component, OnInit, EventEmitter, Output } from &#39;&#64;angular/core&#39;;
+
+&#64;Component({
+  selector: &#39;app-text&#39;,
+  templateUrl: &#39;./text.component.html&#39;,
+  styleUrls: [&#39;./text.component.css&#39;]
+})
+export class TextComponent implements OnInit {
+  &#64;Output() written = new EventEmitter();
+  message: string = &#39;&#39;;
+
+  constructor() { }
+
+  ngOnInit() {
+  }
+
+  sendInfo() {
+    this.written.emit(this.message);
+  }
+</code></pre></div><p>Como podéis ver, hemos definido el Output &quot;written&quot;, y hemos modificado la función sendInfo para que, en vez de mostrar un mensaje alert por pantalla, emita la información a través de ese Output. De esta forma, podemos escuchar ese mensaje desde <em>app.component</em> con la notación de parentesis</p>
+<div><pre class="line-numbers"><code class="language-none">  &lt;app-text (written)=&quot;receiveMessage($event)&quot;&gt;&lt;/app-text&gt;</code></pre></div><p>Ahora, podemos definir esa función receiveMessage en nuestro app.component.ts para que guarde el valor del mensaje enviado en una variable. Como véis, hemos utilizado una variable especial $event en la llamada a la función, esto debe ir siempre que queramos recoger la información que nos envía el evento. En el caso de nuestro evento, recibiremos lo que hemos enviado en el emit de el Output</p>
+<div><pre class="line-numbers"><code class="language-none">
+import { Component } from &#39;&#64;angular/core&#39;;
+
+&#64;Component({
+  selector: &#39;app-root&#39;,
+  templateUrl: &#39;./app.component.html&#39;,
+  styleUrls: [&#39;./app.component.css&#39;]
+})
+export class AppComponent {
+  title = &#39;chat&#39;;
+  parentMessage: string;
+
+  receiveMessage(message) {
+    this.parentMessage = message;
+  }</code></pre></div><p>y mostrarlo en nuestro html
+<code></code></p>
+<h3>Mensaje desde el hijo:</h3>
+<p>{{ parentMessage }}</p>
+<app-text (written)="receiveMessage($event)"></app-text>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> result-matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 0;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'getting-started';
+            var COMPODOC_CURRENT_PAGE_URL = 'index.html';
+       </script>
+
+       <script src="./js/libs/custom-elements.min.js"></script>
+       <script src="./js/libs/lit-html.js"></script>
+       <!-- Required to polyfill modern browsers as code is ES5 for IE... -->
+       <script src="./js/libs/custom-elements-es5-adapter.js" charset="utf-8" defer></script>
+       <script src="./js/menu-wc.js" defer></script>
+
+       <script src="./js/libs/bootstrap-native.js"></script>
+
+       <script src="./js/libs/es6-shim.min.js"></script>
+       <script src="./js/libs/EventDispatcher.js"></script>
+       <script src="./js/libs/promise.min.js"></script>
+       <script src="./js/libs/zepto.min.js"></script>
+
+       <script src="./js/compodoc.js"></script>
+
+       <script src="./js/tabs.js"></script>
+       <script src="./js/menu.js"></script>
+       <script src="./js/libs/clipboard.min.js"></script>
+       <script src="./js/libs/prism.js"></script>
+       <script src="./js/sourceCode.js"></script>
+          <script src="./js/search/search.js"></script>
+          <script src="./js/search/lunr.min.js"></script>
+          <script src="./js/search/search-lunr.js"></script>
+          <script src="./js/search/search_index.js"></script>
+       <script src="./js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

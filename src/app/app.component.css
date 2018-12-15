@@ -1,0 +1,44 @@
+:host {
+    display: flex;
+    height: 100vh;
+    flex-direction: column;
+    justify-content: space-between;
+}
+header {
+    padding: 12px;
+    background: #8ee0ff;
+}
+a {
+    text-decoration: none;
+    color: blue;
+}
+.active {
+    color: red;
+}
+
+.user {
+    display: flex;
+    align-items: center;
+    border: 1px solid gray;
+    border-radius: 5px;
+    margin: 5px;
+    justify-content: space-between;
+    flex-direction: column;
+    width: 200px;
+    padding: 20px;
+    background: white;
+    cursor: pointer;
+}
+
+.user-list {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.user:hover {
+    opacity: .8;
+}
+
+.user app-avatar {
+    margin-right: 10px;
+}

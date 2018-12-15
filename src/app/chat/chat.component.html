@@ -1,0 +1,7 @@
+<p> Writing to {{ destinatary }}</p>
+<a routerLink="/">Go to contacts</a>
+<br>
+
+<h3>MESSAGES:</h3>
+<app-board></app-board>
+<app-text (onmessage)="addMessage($event)"></app-text>
