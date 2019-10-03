@@ -21,5 +21,6 @@ describe('ChatComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
+    expect(fixture).toBeDefined();
   });
 });
